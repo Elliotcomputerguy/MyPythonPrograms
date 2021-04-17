@@ -8,3 +8,4 @@ timestable = int(timestable)
 while i <=10:
     print('10 x', i, '=', i * timestable )
     i = i + 1
+    
