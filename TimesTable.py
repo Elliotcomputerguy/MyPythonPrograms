@@ -1,9 +1,9 @@
 #!/usr/bin/python
 
-# My Times table program
+# My simple times table program
 
 i = 1
-print('Enter your times table of choice')
+print('Enter your times table of choice:')
 timestable = input()
 timestable = int(timestable)
 while i <=10:
