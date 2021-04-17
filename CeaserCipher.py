@@ -63,5 +63,6 @@ if mode == 'DECRYPT':
 elif mode == 'ENCRYPT':
     # print encrypted message
     print('Encrypted Message: ', translated)
+    
 
 
