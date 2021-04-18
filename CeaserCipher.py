@@ -22,7 +22,7 @@ while key >=25:
     key = int(key)
 
 # asks the user which mode to select encryption/decryption
-mode = input('Enter ENCRYPT to Encrypt or DECRYPT to decrypt:')
+mode = input('Enter Encrypt to Encrypt or Decrypt to decrypt:')
 # capatalize string
 mode = mode.upper()
 
