@@ -1,11 +1,12 @@
-
-
+import sys
 
 # How old are in seconds ? 
 # There are 365 days in the year, 24 hours in the day, 60 minutes in a hour and 60 seconds in a minute. 
 
 def main():
-    print('''
+
+    while True:
+        print('''
 
  ('-. .-.               (`\ .-') /`                             _ .-') _           ('-.     _  .-')     ('-.                                                    
 ( OO )  /                `.( OO ),'                            ( (  OO) )         ( OO ).-.( \( -O )  _(  OO)                                                   
@@ -26,11 +27,14 @@ def main():
                                                 (_|  |   |  | \   |        \       / |  `---.(_'  '--'\    `'  '-'  '|  | \   |   |  '--'  /\       /           
                                                   `--'   `--'  `--'         `-----'  `------'   `-----'      `-----' `--'  `--'   `-------'  `-----'  
 ''')
-
-    yourAge = input('What is your age:')
-    yourAge = int(yourAge)
-    seconds = yourAge * 365 * 24 * 60 * 60
-    print('You are %s old in seconds!' % seconds)
+        print('type exit to leave the program')
+        yourAge = input('What is your age:')
+        yourAgeExit = yourAge.upper()
+        if yourAgeExit == 'EXIT':
+            sys.exit()
+        else:
+            yourAge = int(yourAge)
+            seconds = yourAge * 365 * 24 * 60 * 60
+            print('You are %s old in seconds!' % seconds)
 
 main()
-
