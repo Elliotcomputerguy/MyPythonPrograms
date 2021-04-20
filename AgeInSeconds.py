@@ -36,5 +36,4 @@ def main():
             yourAge = int(yourAge)
             seconds = yourAge * 365 * 24 * 60 * 60
             print('You are %s old in seconds!' % seconds)
-
 main()
