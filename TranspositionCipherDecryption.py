@@ -5,14 +5,10 @@ import math
 # http://inventwithpython.com/hacking (BSD Licened)
 
 def main():
-    myMessage = ''
-    myKey = ''
 
-    while myMessage:
-        myMessage = input('Enter encrypted text:')
+    myMessage = input('Enter encrypted text:')
 
-    while myKey:
-        myKey = int(input('Enter your Key:'))
+    myKey = int(input('Enter your Key:'))
     
     plaintext = decryptMessage(myKey, myMessage)
 
@@ -42,6 +38,3 @@ def decryptMessage(key, message):
 
 if __name__ == '__main__':
     main()
-
-
-
