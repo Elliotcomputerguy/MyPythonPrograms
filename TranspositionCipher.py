@@ -1,9 +1,8 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 def main():
     myMessage = input('Enter message:')
-    myKey = input('Enter encryption key:')
-    myKey = int(myKey)
+    myKey = int(input('Enter encryption key:'))
 
     ciphertext = encryptMessage(myKey, myMessage)
 
