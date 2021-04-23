@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+# This can be cleaned up and the flow can be made better.
+
 import random, sys, os, time
 
 def main():
