@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 import random, os, sys
 def main():
-   # while True:
-
+    
     WORDS = ('bobob', 'wimpy', 'burgerking', 'mcdonalds', 'kentuckyfriedchicken')
     lenWord = random.randrange(len(WORDS))
     word = WORDS[lenWord]
