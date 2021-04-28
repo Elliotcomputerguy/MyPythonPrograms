@@ -5,7 +5,7 @@ from datetime import date
 import datetime
 year = datetime.date.today().year
 
-userDob = input('Please enter your date of birth:')
+userDob = input('Please enter your birth year:')
 currentAge = str(int(year) - int(userDob))
 futureYear = str(int(year + 10))
 print(futureYear)
