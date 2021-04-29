@@ -27,10 +27,10 @@ while choice != '0':
         print('NAME\tSCORE')
 
         for entry in scores:
-            print(f'list = {scores}')
+            #print(f'list = {scores}')
             score, name = entry #<-- assigns the elements from the list using a for loop. variable score gets assigned the 
-            print(f'{name}\t{score}') # first value from the list. variable name second. 
-            print(f'list = {scores}')
+        print(f'{name}\t{score}') # first value from the list. variable name second. Tuple unpacking.
+            #print(f'list = {scores}')
 
     #Add a score
     elif choice == '2':
@@ -38,9 +38,9 @@ while choice != '0':
         score = int(input('Enter a score:'))
         entry = (score, name) # <-- creates a tuple called entry
         scores.append(entry) # <-- uses method append to list scores.
-        print(f'list = {scores}') 
+        #print(f'list = {scores}') 
         scores.sort(reverse=True) #<-- reverses the list so highest number is on top.
         scores = scores[:5] #<-- blank slices list to only keep 5 elements 
-        print(f'list = {scores}')
+        #print(f'list = {scores}')
     else:
         print('Is not a valid choice')
