@@ -1,5 +1,5 @@
 
-counter = 2 
+counter = 2
 while counter <= 100:
     if counter % 2 == 0:
         print(f'{counter} not a prime number.')
