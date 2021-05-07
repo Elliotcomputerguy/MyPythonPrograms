@@ -1,12 +1,13 @@
 
 import pathlib
+from pathlib import Path
 
 basalt, breccia, highland, regolith = 0, 0, 0, 0
 
 print('Artemis Rover Rock Scanner Starting')
 strPath = pathlib.Path('C:/Users/ElliotStenning/Documents/Python/rocks.txt')
 
-with open(strPath) as fileObject:
+with strPath.open(mode = 'r', encoding='utf-8') as fileObject:
     rockList = [line.rstrip() for line in fileObject.readlines()]
 
 def countMoonRocks(rockToID):
