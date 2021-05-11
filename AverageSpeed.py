@@ -15,7 +15,7 @@ def averageSpeed(distance, time):
     else:
         return f' Your average speed is {answer} miles per hour'
         
-
-dist = input('Enter your distance in miles:')
-time = input('Enter the travel time in hours:')
-print(averageSpeed(dist, time))
+def dist_speed():
+    dist = input('Enter your distance in miles:')
+    time = input('Enter the travel time in hours:')
+    print(averageSpeed(dist, time))
