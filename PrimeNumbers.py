@@ -16,13 +16,24 @@ def primeNumbers(maxCount, file):
             # when you mod by 2 it only evaluates to either a 0 or 1.
             # If it is a 0 it is not prime. If it is 1 it is prime.
             if iterator % 2 == 0:
-                primeList.append(iterator)
-                iterator += 1
-            else:
                 compositeList.append(iterator)
                 iterator += 1
+            else:
+                primeList
+                primeList.append(iterator)
+                iterator += 1
+        # insert -1 into the list on every iteration of 10 with for loop
+        for i in range(0, maxCount, 11):
+            primeList.insert(i, -1)
+        # convert list into string and repalce -1 with a new line break and remove commas and brackets.
+        primeList = ''.join(str(primeList)).replace('-1', '\n').replace(',', '').replace('[', '').replace(']','').strip()
+        # insert -1 into the list on every iteration of 10
+        for i in range(0, maxCount, 11):
+            compositeList.insert(i, -1) 
+        # convert list into string and repalce -1 with a new line break and remove commas and brackets.
+        compositeList = ''.join(str(compositeList)).replace('-1', '\n').replace(',', '').replace('[', '').replace(']','').strip()
         with path.open(mode='w', encoding='utf-8') as fileObject:
-            fileObject.write(f'\t\t\tPrime Numbers\n{primeList}\n\t\t\tComposite\n{compositeList}')
+            fileObject.write(f'\n\t\tPrime Numbers\n\n{primeList}\n\n\t\tComposite\n\n{compositeList}')
             completed = f'[+] prime numbers and composite numbers have been created up to {maxCount}'
         return completed
     else:
@@ -38,7 +49,7 @@ def userPrimeMenu():
         # initalize variables
         menuOption = (0, 1,) # Tuple for menu option
         confirmMenuOption = '' # user input variable
-
+        #while menu loop if userinput is incorrect
         while confirmMenuOption not in menuOption:
             os.system('cls')
             # if user does not enter integer capture ValueError traceback
@@ -83,7 +94,7 @@ def userPrimeMenu():
             #read file
             with path.open(mode='r', encoding='utf-8') as fileObject:
                 for lines in fileObject.readlines():
-                    print(lines.rstrip())
+                    print(lines.strip())
                 time.sleep(10)
 
         elif confirmMenuOption == menuOption[1]:
