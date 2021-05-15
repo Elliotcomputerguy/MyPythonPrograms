@@ -1,8 +1,5 @@
 #!/bin/usr/env python
 
-
-
-def 
 kilometers = 12.25
 miles = 7.38
 
