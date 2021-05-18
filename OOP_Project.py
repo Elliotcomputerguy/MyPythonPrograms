@@ -21,11 +21,6 @@ class PetRabbit:
                 for items in classObjectList:
                     fileObject.writelines(f'{items}\n')
         elif pathObject.exists():
-            classObjectList = []
-            with pathObject.open(mode='r', encoding='utf-8') as fileObject:
-                for items in fileObject.readlines():
-                    fileObjectIndex = items[:-1]
-                    classObjectList.append(fileObjectIndex)
             with pathObject.open(mode='a', encoding='utf-8') as fileObject:
                 fileObject.writelines(f'{classObjectName}\n')
                 fileObject.writelines(f'{classObjectDateOfBirth}\n')
@@ -40,24 +35,12 @@ class PetRabbit:
                     fileObjectIndex = items[:-1]
                     classObjectList.append(fileObjectIndex)
             classObjectListLength = len(classObjectList) -1
-            print(f'this is the length of the list before loop {classObjectListLength}')
-            counter = 0
-            counter1 = 0
             for classObjectDate in range(1, classObjectListLength, 2):
-                counter1 += 1
-                print(f'this is the length of the list in loop {counter} {classObjectListLength}')
-                print('this is the list item', counter1, classObjectList[classObjectDate])
-                print(int(classObjectList[classObjectDate]) - int(currentDate))
-
                 fileObjectDateOfBirth = int(classObjectList[classObjectDate]) - int(currentDate)
-
-                if fileObjectDateOfBirth >= 30:
+                if fileObjectDateOfBirth >= 5:
                     classObjectDiedDate = classObjectList.pop(classObjectDate)
                     classObjectDiedName = classObjectList.pop(classObjectDate -1)
-                    print(f'{classObjectDiedName} passed away and has gone to bunnny heaven. {classObjectDiedName} survived for {fileObjectDateOfBirth} days')
-                    #classObjectListLength
-                    counter += 1
-                    print(f'this is the length of the list after one found {classObjectListLength}')
+                    print(f'{classObjectDiedName} passed away on {classObjectDiedDate} and has gone to bunny heaven. {classObjectDiedName} survived for {fileObjectDateOfBirth} days')
                     with pathObject.open(mode='w', encoding='utf-8') as fileObject:
                         for items in classObjectList:
                             fileObject.writelines(f'{items}\n')
@@ -72,7 +55,7 @@ class PetRabbit:
         classObject += f'Name: {self.name}'
         return classObject
 
-
+#main
 rabbit = PetRabbit('jack') #<-- Instantiating an object from the class PetRabbit
 #print(rabbit.name)
 print(rabbit.classObjectLife())
