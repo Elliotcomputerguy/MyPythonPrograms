@@ -21,10 +21,36 @@ def dateOfBirth(date):
         return currentAge
 
 def main():
-    dob = input('Please enter your date of Birth in DD-MM-YYYY:')
-    currentAge = dateOfBirth(dob)
-    futureYear = int(currentdate()) + 10
-    #futureYear = int(dt.year) + 10
-    print('Your age is ' + str(currentAge) + '\nYou will be ' + str(int(currentAge) + int(10)) + ', 10 years from now in the year ' + str(futureYear))
+    dob = ''
+    while not dob:
+        dob = input('Please enter your date of Birth in DD-MM-YYYY:')
+
+    if len(dob) == 8 and dob.isdigit:
+        try:
+            currentAge = dateOfBirth(dob)
+            futureYear = int(currentdate()) + 10
+        except TypeError:
+            print('Enter a number')
+        print('Your age is ' + str(currentAge) + '\nYou will be ' + str(int(currentAge) + int(10)) + ', 10 years from now in the year ' + str(futureYear))
+    else:
+        if len(dob) == 10 and '/' in dob:
+            dob = dob.replace('/','')
+            try:
+                currentAge = dateOfBirth(dob)
+                futureYear = int(currentdate()) + 10
+            except TypeError:
+                print('Enter a number')
+            print('Your age is ' + str(currentAge) + '\nYou will be ' + str(int(currentAge) + int(10)) + ', 10 years from now in the year ' + str(futureYear))
+        elif len(dob) == 10 and '-' in dob:
+            dob = dob.replace('-','')
+            try:
+                currentAge = dateOfBirth(dob)
+                futureYear = int(currentdate()) + 10
+            except TypeError:
+                print('Enter a number')
+            print('Your age is ' + str(currentAge) + '\nYou will be ' + str(int(currentAge) + int(10)) + ', 10 years from now in the year ' + str(futureYear))
+        else:
+            print('error')
+
 
 main()
