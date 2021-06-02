@@ -101,5 +101,6 @@ def userPrimeMenu():
             print('Menu option 1 entered. Exiting program.')
             time.sleep(5)   # Delays for 5 seconds.
             sys.exit()
-                     
-userPrimeMenu()
+            
+if __name__ == '__main__':                 
+    userPrimeMenu()
