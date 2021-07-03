@@ -8,18 +8,19 @@ def timesTable(multiplier, integer):
 def main():
     import sys
     ''' main program'''
-
     while True:
-        integer = ''
         multiplier = ''
+        integer = ''
 
         while not multiplier:
             print('\n\tEnter any number to multiply.\n \tType exit to escape.\n')
             multiplier = input('Enter a multiplier:').lower().strip()
             if multiplier == 'exit':
                 sys.exit()
+            elif multiplier.isdecimal():
+                intMultiplier = float(multiplier)
             elif multiplier.isdigit():
-                intMultiplier = int(multiplier)
+                intMultiplier = integer(multiplier)
             else:
                 print('Please enter a number or exit to exit.')
         while not integer:
@@ -27,6 +28,8 @@ def main():
             integer = input('Enter a number to multiply:').lower().strip()
             if integer == 'exit':
                 sys.exit()
+            elif integer.isdecimal():
+                intInteger = float(integer)
             elif integer.isdigit():
                 intInteger = int(integer)
             else:
