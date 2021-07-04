@@ -19,7 +19,6 @@ def randomIPandSubnetMask():
                 ipSubnetPrefixList[0] = octets
             
             netAddress = ''.join(str(ipSubnetPrefixList)).replace('[','').replace(']','').replace(',', '.').replace(' ', '')
-            print(f'{netAddress}')
 
         cidr = {
             '8': '255.0.0.0',
@@ -49,13 +48,10 @@ def randomIPandSubnetMask():
             '32': '255.255.255.255'
             }
 
-        #for i in cidr:
         randomSubnetMask = random.choice(list(cidr.values()))
-        print(f' random subnet mask: {randomSubnetMask}')
         for keyPrefix, subnetMask in cidr.items():
             if subnetMask == randomSubnetMask:
                 prefix = int(keyPrefix)
-                print(f'prefix: {prefix}')
         classRange = ipSubnetPrefixList[0]
         network = int(classRange)
         ipSubnetPrefixList = []
@@ -71,31 +67,12 @@ def randomIPandSubnetMask():
             n = 24
         
         NetworkIdMask = prefix - n
-        print(f'network number 32 = {NetworkIdMask}')
 
     ipSubnetPrefixList.append(netAddress)
     ipSubnetPrefixList.append(randomSubnetMask)
     ipSubnetPrefixList.append(prefix)
     ipSubnetPrefixList.append(netClass)
     return ipSubnetPrefixList
-
-print(randomIPandSubnetMask())       
-
-        
-
-
-# Identify what class is the network id in
-#def networkClass(networkid):
-#    netIdList = networkid.split('.')
-#    classRange = netIdList[0]
-#    classRangeInt = int(classRange)
-
-#    if classRangeInt in range(1, 127):
-#        return 'A'
-#    elif classRangeInt in range(128, 193):
-#        return 'B'
-#    elif classRangeInt in range(192, 224):
-#        return 'C'
 
 def numberOfSubnets(prefix, IP, classId):
     p = int(prefix)
@@ -120,19 +97,21 @@ def numberOfHosts(prefix):
     numOfHostsPow = 2 ** numOfHosts
     return numOfHostsPow 
 
-#def main():
-#    ip = internetProtocolAddress()
-#    print(f'IP address is {ip}')
-#    subList = subnetMask()
-#    subnetmask = subList[0]
-#    prefix = subList[1]
-#    print(f'subnet mask is {subnetmask} : /{prefix}')
-#    netClass = networkClass(ip)
-#    print(f'network class: {netClass}')
-#    howManySubs = numberOfSubnets(prefix, ip, netClass)
-#    print(f'How many subnets: {howManySubs}')
-#    howmanyHosts = numberOfHosts(prefix)
-#    print(f'number of hosts: {howmanyHosts}')
+def main():
+    mainList = randomIPandSubnetMask()
+
+    ip = mainList[0]
+    print(f'IP address is {ip}')
+    subnetmask = mainList[1]
+    prefix = mainList[2]
+    print(f'subnet mask is {subnetmask} : /{prefix}')
+    netClass = mainList[3]
+    print(f'network class: {netClass}')
+    howManySubs = numberOfSubnets(prefix, ip, netClass)
+    print(f'How many subnets: {howManySubs}')
+    howmanyHosts = numberOfHosts(prefix)
+    print(f'number of hosts: {howmanyHosts}')
+main()
 
 #    present random ip using range function 1 4,294,967,296 ensuring each octet is below 255 and 223 on the first octet.... 
     
