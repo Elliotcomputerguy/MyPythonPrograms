@@ -13,9 +13,35 @@ def gameTitle():
     ''')
 
 def gameRules(userArg, randArg):
-    pass
 
+    if randArg == 'rock':
+        randArg = 1
+    elif randArg == 'paper':
+        randArg = 2
+    elif randArg == 'scissors':
+        randArg = 3
 
+    if userArg == randArg or randArg == userArg:
+        print('none')
+        return None
+    elif userArg == 1 and randArg == 2:
+        player = 'player'
+        return player
+    elif randArg == 1 and userArg == 2:
+        computer = 'computer'
+        return computer
+    elif userArg == 1 and randArg == 3:
+        computer = 'computer'
+        return computer
+    elif randArg == 1 and userArg == 3:
+        player = 'player'
+        return player
+    elif userArg == 2 and randArg == 3:
+        computer = 'computer'
+        return computer
+    elif randArg == 2 and userArg == 3:
+        player = 'player'
+        return player
 
 def main():
     import sys, random
@@ -45,13 +71,14 @@ def main():
                 print(gameTitle())
                 while player or computer != 1:
                     print('\n\t\t Enter 1 for Rock, 2 for Paper, 3 for Scissors or E for exit')
-                    playerMove = input('Enter Rock Paper or Sicssors >')
-                    if playerMove == 'e' or playerMove == 'E':
+                    playerMove = int(input('Enter Rock Paper or Sicssors >'))
+                    if playerMove == 'e':
                         sys.exit()
                     else:
                         computermove = random.choice(words)
+                        print(computermove)
+                        print(playerMove)
                         gameResult = gameRules(playerMove, computermove)
-                    
                         if gameResult == 'player':
                             player = 1
                             print('You won..')
