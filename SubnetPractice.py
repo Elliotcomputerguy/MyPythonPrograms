@@ -1,7 +1,7 @@
 
 #Create random subnet mask and ipv4 net address
 def randomIPandSubnetMask():
-    ''' Create random IPV4 network address and subnet mask and return cidr'''
+    ''' Create random IPV4 network address and subnet mask and return cidr and class'''
     import random
     
     prefix = 0
@@ -19,7 +19,6 @@ def randomIPandSubnetMask():
                 ipSubnetPrefixList[0] = octets
             
             netAddress = ''.join(str(ipSubnetPrefixList)).replace('[','').replace(']','').replace(',', '.').replace(' ', '')
-            print(f'{netAddress}')
 
         cidr = {
             '8': '255.0.0.0',
@@ -49,13 +48,10 @@ def randomIPandSubnetMask():
             '32': '255.255.255.255'
             }
 
-        #for i in cidr:
         randomSubnetMask = random.choice(list(cidr.values()))
-        print(f' random subnet mask: {randomSubnetMask}')
         for keyPrefix, subnetMask in cidr.items():
             if subnetMask == randomSubnetMask:
                 prefix = int(keyPrefix)
-                print(f'prefix: {prefix}')
         classRange = ipSubnetPrefixList[0]
         network = int(classRange)
         ipSubnetPrefixList = []
@@ -71,31 +67,12 @@ def randomIPandSubnetMask():
             n = 24
         
         NetworkIdMask = prefix - n
-        print(f'network number 32 = {NetworkIdMask}')
 
     ipSubnetPrefixList.append(netAddress)
     ipSubnetPrefixList.append(randomSubnetMask)
     ipSubnetPrefixList.append(prefix)
     ipSubnetPrefixList.append(netClass)
     return ipSubnetPrefixList
-
-print(randomIPandSubnetMask())       
-
-        
-
-
-# Identify what class is the network id in
-#def networkClass(networkid):
-#    netIdList = networkid.split('.')
-#    classRange = netIdList[0]
-#    classRangeInt = int(classRange)
-
-#    if classRangeInt in range(1, 127):
-#        return 'A'
-#    elif classRangeInt in range(128, 193):
-#        return 'B'
-#    elif classRangeInt in range(192, 224):
-#        return 'C'
 
 def numberOfSubnets(prefix, IP, classId):
     p = int(prefix)
@@ -117,22 +94,48 @@ def numberOfHosts(prefix):
     p = int(prefix)
     h = 32
     numOfHosts = h - p
-    numOfHostsPow = 2 ** numOfHosts
+    numOfHostsPow = 2 ** numOfHosts - 2
     return numOfHostsPow 
 
-#def main():
-#    ip = internetProtocolAddress()
-#    print(f'IP address is {ip}')
-#    subList = subnetMask()
-#    subnetmask = subList[0]
-#    prefix = subList[1]
-#    print(f'subnet mask is {subnetmask} : /{prefix}')
-#    netClass = networkClass(ip)
-#    print(f'network class: {netClass}')
-#    howManySubs = numberOfSubnets(prefix, ip, netClass)
-#    print(f'How many subnets: {howManySubs}')
-#    howmanyHosts = numberOfHosts(prefix)
-#    print(f'number of hosts: {howmanyHosts}')
+
+
+
+def main():
+    mainList = randomIPandSubnetMask()
+
+    ip = mainList[0]
+    subnetmask = mainList[1]
+    prefix = mainList[2]
+    netClass = mainList[3]
+    howManySubs = numberOfSubnets(prefix, ip, netClass)
+    howmanyHosts = numberOfHosts(prefix)
+
+    print(f'\nIP address is {ip}\n')
+    userSubnet = input(f'What is the subnetMask to /{prefix}: >')
+    if userSubnet == subnetmask:
+        print(f'Correct. {subnetmask} is the wright answer...')
+    else:
+        print(f'Incorrect. {subnetmask} is the correct answer...')
+    
+    userNetClass = input('What is the class id for the IP address: >').upper()
+    if userNetClass == netClass:
+        print(f'Correct. {netClass} is the wright answer...')
+    else:
+        print(f'Incorrect. {netClass} is the correct answer...')
+
+    userSubnets = int(input('How many subnets: >'))
+    if userSubnets == howManySubs:
+        print(f'Correct. {howManySubs} is the wright answer...')
+    else:
+        print(f'Incorrect. {howManySubs} is the correct answer...')        
+    
+    userHosts = int(input('How many hosts: >'))
+    if userHosts == howmanyHosts:
+        print(f'Correct. {howmanyHosts} is the wright answer...')
+    else:
+        print(f'Incorrect. {howmanyHosts} is the correct answer...')
+
+main()
 
 #    present random ip using range function 1 4,294,967,296 ensuring each octet is below 255 and 223 on the first octet.... 
     
