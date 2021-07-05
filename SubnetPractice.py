@@ -1,7 +1,7 @@
 
 #Create random subnet mask and ipv4 net address
 def randomIPandSubnetMask():
-    ''' Create random IPV4 network address and subnet mask and return cidr'''
+    ''' Create random IPV4 network address and subnet mask and return cidr and class'''
     import random
     
     prefix = 0
@@ -94,23 +94,47 @@ def numberOfHosts(prefix):
     p = int(prefix)
     h = 32
     numOfHosts = h - p
-    numOfHostsPow = 2 ** numOfHosts
+    numOfHostsPow = 2 ** numOfHosts - 2
     return numOfHostsPow 
+
+
+
 
 def main():
     mainList = randomIPandSubnetMask()
 
     ip = mainList[0]
-    print(f'IP address is {ip}')
     subnetmask = mainList[1]
     prefix = mainList[2]
-    print(f'subnet mask is {subnetmask} : /{prefix}')
     netClass = mainList[3]
-    print(f'network class: {netClass}')
     howManySubs = numberOfSubnets(prefix, ip, netClass)
-    print(f'How many subnets: {howManySubs}')
     howmanyHosts = numberOfHosts(prefix)
-    print(f'number of hosts: {howmanyHosts}')
+
+    print(f'\nIP address is {ip}\n')
+    userSubnet = input(f'What is the subnetMask to /{prefix}: >')
+    if userSubnet == subnetmask:
+        print(f'Correct. {subnetmask} is the wright answer...')
+    else:
+        print(f'Incorrect. {subnetmask} is the correct answer...')
+    
+    userNetClass = input('What is the class id for the IP address: >').upper()
+    if userNetClass == netClass:
+        print(f'Correct. {netClass} is the wright answer...')
+    else:
+        print(f'Incorrect. {netClass} is the correct answer...')
+
+    userSubnets = int(input('How many subnets: >'))
+    if userSubnets == howManySubs:
+        print(f'Correct. {howManySubs} is the wright answer...')
+    else:
+        print(f'Incorrect. {howManySubs} is the correct answer...')        
+    
+    userHosts = int(input('How many hosts: >'))
+    if userHosts == howmanyHosts:
+        print(f'Correct. {howmanyHosts} is the wright answer...')
+    else:
+        print(f'Incorrect. {howmanyHosts} is the correct answer...')
+
 main()
 
 #    present random ip using range function 1 4,294,967,296 ensuring each octet is below 255 and 223 on the first octet.... 
