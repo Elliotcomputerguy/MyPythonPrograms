@@ -1,3 +1,4 @@
+# have not add private address rule for 172.16.0.0 - 172.31.255.255 /12
 # ...program title...
 def main_title():
     ''' Title'''
@@ -76,6 +77,8 @@ def netwrapup():
     netlist = []
     netaddress = createRandInternetProtocolAddress()
     netmasklist = randNetMask()
+   # for item in netmasklist:
+   #     prefix, netmask = item
     prefix = netmasklist.pop(0)
     netmask = netmasklist.pop(0)
     netclass = netclass_a_b_c(netaddress)
@@ -102,31 +105,37 @@ def netrules():
 def ipcalcFunc(ip, prefix):
     import ipcalc
     ipcalcList = []
-    net = ip
-    net += prefix
+    net = str(f'{ip}/{prefix}')
     net = ipcalc.Network(net)
-
-    ipcalcList.append(net.netmask())
     ipcalcList.append(net.broadcast())
     ipcalcList.append(net.host_first())
     ipcalcList.append(net.host_last())
     ipcalcList.append(net.size())
     ipcalcList.append(net.network())
-    ipcalcList.append(net.subnet())
     return ipcalcList
 
 def main():
     setup()
     unpacklist = netrules()
-    netaddress = unpacklist[0]
-    prefix = unpacklist[1]
-    netmask = unpacklist[2]
-    netclass = unpacklist[3]
-    print(netaddress)
-    print(prefix)
-    print(netmask)
-    print(netclass)
+    netaddress, prefix, netmask, netclass = unpacklist
+    ipcalclist = ipcalcFunc(netaddress, prefix)
+    joinipcalc = ''.join(str(ipcalclist).replace('IP','').replace('(','').replace(')','').replace('[','').replace(']','').replace("'",""))
+    ipcalclist = joinipcalc.split(',')
+    broadcast, firstip, lastip, hosts, netid = ipcalclist
+    hosts = int(hosts)
+    hosts = hosts - 2
 
+    main_title()
+
+    print(f'ip address : {netaddress}')
+    print(f'subnet mask :{netmask} and prefix : /{prefix}')
+    print(f'IP class : {netclass}')
+    print(f'network id : {netid}')
+    print(f'First ip address : {firstip}')
+    print(f'Last ip address : {lastip}')
+    print(f'Broadcast address : {broadcast}')
+    print(f'How many hosts : {hosts}')
+    
 main()
 
 
