@@ -1,5 +1,18 @@
 
-#Create random subnet mask and ipv4 net address
+def mainTitle():
+    ''' Title'''
+    title =  print('''
+10101010 00101010 01110101 01010110 10101010 11010101 10101010 00101010 01110101 01010110 10101010 11010101 10101010 00101010 01110101 01010110 101
+███████╗██╗   ██╗██████╗ ███╗   ██╗███████╗████████╗████████╗██╗███╗   ██╗ ██████╗     ██████╗ ██████╗  █████╗  ██████╗████████╗██╗ ██████╗███████╗
+██╔════╝██║   ██║██╔══██╗████╗  ██║██╔════╝╚══██╔══╝╚══██╔══╝██║████╗  ██║██╔════╝     ██╔══██╗██╔══██╗██╔══██╗██╔════╝╚══██╔══╝██║██╔════╝██╔════╝
+███████╗██║   ██║██████╔╝██╔██╗ ██║█████╗     ██║      ██║   ██║██╔██╗ ██║██║  ███╗    ██████╔╝██████╔╝███████║██║        ██║   ██║██║     █████╗  
+╚════██║██║   ██║██╔══██╗██║╚██╗██║██╔══╝     ██║      ██║   ██║██║╚██╗██║██║   ██║    ██╔═══╝ ██╔══██╗██╔══██║██║        ██║   ██║██║     ██╔══╝  
+███████║╚██████╔╝██████╔╝██║ ╚████║███████╗   ██║      ██║   ██║██║ ╚████║╚██████╔╝    ██║     ██║  ██║██║  ██║╚██████╗   ██║   ██║╚██████╗███████╗
+╚══════╝ ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚══════╝   ╚═╝      ╚═╝   ╚═╝╚═╝  ╚═══╝ ╚═════╝     ╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝   ╚═╝   ╚═╝ ╚═════╝╚══════╝
+10101010 00101010 01110101 01010110 10101010 11010101 10101010 00101010 01110101 01010110 10101010 11010101 10101010 00101010 01110101 01010110 101
+    ''')
+    return title
+
 def randomIPandSubnetMask():
     ''' Create random IPV4 network address and subnet mask and return cidr and class'''
     import random
@@ -52,17 +65,20 @@ def randomIPandSubnetMask():
         for keyPrefix, subnetMask in cidr.items():
             if subnetMask == randomSubnetMask:
                 prefix = int(keyPrefix)
-        classRange = ipSubnetPrefixList[0]
-        network = int(classRange)
+#        classRange = ipSubnetPrefixList[0]
+#        network = int(classRange)
+#        print(network)
         ipSubnetPrefixList = []
+   
+   # needs to be subnet not ip address.......!
 
-        if network in range(1, 127):
+        if prefix <= 15:
             netClass = 'A'
             n = 8
-        elif network in range(128, 193):
+        elif prefix <= 23:
             netClass = 'B'
             n = 16
-        elif network in range(192, 224):
+        elif prefix <= 32:
             netClass = 'C'
             n = 24
         
@@ -96,9 +112,6 @@ def numberOfHosts(prefix):
     numOfHosts = h - p
     numOfHostsPow = 2 ** numOfHosts - 2
     return numOfHostsPow 
-
-
-
 
 def main():
     mainList = randomIPandSubnetMask()
