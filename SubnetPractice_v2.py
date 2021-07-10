@@ -77,8 +77,6 @@ def netwrapup():
     netlist = []
     netaddress = createRandInternetProtocolAddress()
     netmasklist = randNetMask()
-   # for item in netmasklist:
-   #     prefix, netmask = item
     prefix = netmasklist.pop(0)
     netmask = netmasklist.pop(0)
     netclass = netclass_a_b_c(netaddress)
@@ -100,7 +98,7 @@ def netrules():
 
 # ...Using tehmaze ipcalc to return first host, last host, broadcast, how many hosts, prefix, netmask. 
 # ...ipcalc can be found at https://pypi.org/project/ipcalc/#files
-#  ...https://github.com/tehmaze/ipcalc
+# ...https://github.com/tehmaze/ipcalc
 
 def ipcalcFunc(ip, prefix):
     import ipcalc
@@ -115,28 +113,46 @@ def ipcalcFunc(ip, prefix):
     return ipcalcList
 
 def main():
+    import sys, os, time
     setup()
-    unpacklist = netrules()
-    netaddress, prefix, netmask, netclass = unpacklist
-    ipcalclist = ipcalcFunc(netaddress, prefix)
-    joinipcalc = ''.join(str(ipcalclist).replace('IP','').replace('(','').replace(')','').replace('[','').replace(']','').replace("'",""))
-    ipcalclist = joinipcalc.split(',')
-    broadcast, firstip, lastip, hosts, netid = ipcalclist
-    hosts = int(hosts)
-    hosts = hosts - 2
+    while True:
+        os.system('cls')
+        unpacklist = netrules()
+        netaddress, prefix, netmask, netclass = unpacklist
+        ipcalclist = ipcalcFunc(netaddress, prefix)
+        joinipcalc = ''.join(str(ipcalclist).replace('IP','').replace('(','').replace(')','').replace('[','').replace(']','').replace("'",""))
+        ipcalclist = joinipcalc.split(',')
+        options = (1,2)
+        broadcast, firstip, lastip, hosts, netid = ipcalclist
+        hosts = int(hosts)
+        hosts = hosts - 2
+        option = ''
+        main_title()
+        print('''
+                                                \t[1] Subnet practice    
+                                                \t[2] Exit                 
+        ''')
+        while option not in options:
+            try:
+                option = int(input('Option >'))
+            except ValueError:
+                print('Invalid option input')
 
-    main_title()
-
-    print(f'ip address : {netaddress}')
-    print(f'subnet mask :{netmask} and prefix : /{prefix}')
-    print(f'IP class : {netclass}')
-    print(f'network id : {netid}')
-    print(f'First ip address : {firstip}')
-    print(f'Last ip address : {lastip}')
-    print(f'Broadcast address : {broadcast}')
-    print(f'How many hosts : {hosts}')
+        if option == options[0]:
+            print(f'\nip address : {netaddress}')
+            print(f'subnet mask :{netmask} and prefix : /{prefix}')
+            print(f'IP class : {netclass}')
+            print(f'network id : {netid}')
+            print(f'First ip address : {firstip}')
+            print(f'Last ip address : {lastip}')
+            print(f'Broadcast address : {broadcast}')
+            print(f'How many hosts : {hosts}\n')
+            time.sleep(6)
+        elif option == options[1]:
+            sys.exit()
     
-main()
+if __name__ == '__main__':
+    main()
 
 
 
