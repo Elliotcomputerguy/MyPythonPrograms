@@ -147,14 +147,14 @@ def main():
         ''')
         while option not in options:
             try:
-                option = int(input('\t\t\t\t\t\t\tMenu Option:'))
+                option = int(input('\t\t\t\t\t\t\tMenu Option: '))
             except ValueError:
                 print('\t\t\t\t\t\t\tInvalid option input')
 
         if option == options[0]:
 
             print(f'\n\t\t\t\t\t\tip address : {netaddress} /{prefix}\n')
-            userquestion_1 = input(f'\n\t\t\t\t\t\tWhat is the subnet mask to /{prefix} :').strip().upper()
+            userquestion_1 = input(f'\n\t\t\t\t\t\tWhat is the subnet mask to /{prefix} : ').strip().upper()
 
             if userquestion_1 == str(netmask):
                 tracker = 1
@@ -162,49 +162,49 @@ def main():
             else:
                 print(f'\t\t\t\t\t\tNot correct ! Subnet mask : {netmask} and prefix : /{prefix}')
 
-            userquestion_2 = input('\n\t\t\t\t\t\tWhat is the network class of the ip address:').upper().strip()
+            userquestion_2 = input('\n\t\t\t\t\t\tWhat is the network class of the ip address : ').upper().strip()
             if userquestion_2 == str(netclass):
                 tracker += 1
                 print(f'\t\t\t\t\t\tCorrect ! IP class is : {netclass}')
             else:
                 print(f'\t\t\t\t\t\tNot correct ! IP class is : {netclass}')
 
-            userquestion_3 = input('\n\t\t\t\t\t\tWhat is the network Id:').strip()
+            userquestion_3 = input('\n\t\t\t\t\t\tWhat is the network Id : ').strip()
             if userquestion_3 == str(netid).strip():
                 tracker += 1
                 print(f'\t\t\t\t\t\tCorrect ! network id is : {netid}')
             else:
                 print(f'\t\t\t\t\t\tNot correct ! network id is : {netid}')
             
-            userquestion_4 = input('\n\t\t\t\t\t\tWhat is the first ip address:').strip()
+            userquestion_4 = input('\n\t\t\t\t\t\tWhat is the first ip address : ').strip()
             if userquestion_4 == str(firstip).strip():
                 tracker += 1
                 print(f'\t\t\t\t\t\tCorrect ! First ip address is : {firstip}')
             else:
                 print(f'\t\t\t\t\t\tNot correct ! First ip address is : {firstip}')
             
-            userquestion_5 = input('\n\t\t\t\t\t\tWhat is the last ip address:').strip()
+            userquestion_5 = input('\n\t\t\t\t\t\tWhat is the last ip address : ').strip()
             if userquestion_5 == str(lastip).strip():
                 tracker += 1
                 print(f'\t\t\t\t\t\tCorrect ! Last ip address is : {lastip}')
             else:
                 print(f'\t\t\t\t\t\tNot correct ! last ip address is : {lastip}')
 
-            userquestion_6 = input('\n\t\t\t\t\t\tWhat is the broadcast address:').strip()
+            userquestion_6 = input('\n\t\t\t\t\t\tWhat is the broadcast address : ').strip()
             if userquestion_6 == str(broadcast).strip():
                 tracker += 1
                 print(f'\t\t\t\t\t\tCorrect ! Broadcast address is : {broadcast}')
             else:
                 print(f'\t\t\t\t\t\tNot correct ! Broadcast address is : {broadcast}')
 
-            userquestion_7 = input('\n\t\t\t\t\t\tHow many hosts:').strip()
+            userquestion_7 = input('\n\t\t\t\t\t\tHow many hosts : ').strip()
             if userquestion_7 == str(hosts).strip():
                 tracker += 1
                 print(f'\t\t\t\t\t\tCorrect ! total hosts : {hosts}\n')
             else:
                 print(f'\t\t\t\t\t\tNot correct ! total hosts : {hosts}\n')
 
-            userquestion_8 = input('\n\t\t\t\t\t\tHow many subnets:').strip()
+            userquestion_8 = input('\n\t\t\t\t\t\tHow many subnets :').strip()
             if userquestion_8 == str(numOfSubnets):
                 tracker += 1
                 print(f'\t\t\t\t\t\tCorrect ! total subnets : {numOfSubnets}\n')
@@ -228,16 +228,3 @@ def main():
     
 if __name__ == '__main__':
     main()
-
-
-
-    
-
-
-
-
-
-
-
-
-
