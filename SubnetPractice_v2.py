@@ -53,22 +53,47 @@ def randNetMask():
     randomSubnetMask = random.choice(list(cidr.values()))
     for keyPrefix, subnetMask in cidr.items():
         if subnetMask == randomSubnetMask:
-            prefix = keyPrefix
+            prefix = int(keyPrefix)
             ipSubnetPrefixList.append(prefix)
             ipSubnetPrefixList.append(randomSubnetMask)
     return ipSubnetPrefixList
 
 def netclass_a_b_c(netclasscheck):
-    netclasslist = int(netclasscheck).split()
 
-    if netclasslist[0] <= 126:
+    netclasslist = netclasscheck.split('.')
+    octet = int(netclasslist[0])
+
+    if octet < 126:
         netclass = 'A' 
-    elif netclasslist[0] <= 191:
+    elif octet < 191:
         netclass = 'B'
-    elif netclasslist[0] <= 223:
+    elif octet < 223:
         netclass = 'C'
     return netclass
 
+def netwrapup():
+
+    netlist = []
+    netaddress = createRandInternetProtocolAddress()
+    netmasklist = randNetMask()
+    prefix = netmasklist.pop(0)
+    netmask = netmasklist.pop(0)
+    netclass = netclass_a_b_c(netaddress)
+    netlist.append(netaddress)
+    netlist.append(prefix)
+    netlist.append(netmask)
+    netlist.append(netclass)
+    return netlist
+
+def netrules():
+    netlist = netwrapup()
+
+    while netlist[3] == 'B' and netlist[1] < 16:
+        netlist = netwrapup()
+    while netlist[3] == 'C' and netlist[1] < 24:
+        netlist = netwrapup()
+
+    return netlist
 
 # ...Using tehmaze ipcalc to return first host, last host, broadcast, how many hosts, prefix, netmask. 
 # ...ipcalc can be found at https://pypi.org/project/ipcalc/#files
@@ -90,26 +115,22 @@ def ipcalcFunc(ip, prefix):
     ipcalcList.append(net.subnet())
     return ipcalcList
 
-def netrules(netclass, netmask):
-
-    while netclass == 'B' and netmask < 16:
-        netaddress = createRandInternetProtocolAddress()
-        netmask = randNetMask()
-        netclass = netclass_a_b_c(netaddress)
-
-    while netclass == 'C' and netmask < 24:
-        netaddress = createRandInternetProtocolAddress()
-        netmask = randNetMask()
-        netclass = netclass_a_b_c(netaddress)
-
 def main():
+    setup()
+    unpacklist = netrules()
+    netaddress = unpacklist[0]
+    prefix = unpacklist[1]
+    netmask = unpacklist[2]
+    netclass = unpacklist[3]
+    print(netaddress)
+    print(prefix)
+    print(netmask)
+    print(netclass)
 
-    netaddress = createRandInternetProtocolAddress()
-    netmask = randNetMask()
-    netclass = netclass_a_b_c(netaddress)
-    netrules(netclass, netmask)
+main()
 
-    
+
+
     
 
 
