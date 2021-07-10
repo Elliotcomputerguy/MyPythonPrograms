@@ -1,5 +1,5 @@
 # ...program title...
-def mainTitle():
+def main_title():
     ''' Title'''
     title =  print('''
 10101010 00101010 01110101 01010110 10101010 11010101 10101010 00101010 01110101 01010110 10101010 11010101 10101010 00101010 01110101 01010110 101
@@ -90,20 +90,26 @@ def ipcalcFunc(ip, prefix):
     ipcalcList.append(net.subnet())
     return ipcalcList
 
-def netrules(netcheck):
+def netrules(netclass, netmask):
 
     while netclass == 'B' and netmask < 16:
         netaddress = createRandInternetProtocolAddress()
+        netmask = randNetMask()
+        netclass = netclass_a_b_c(netaddress)
 
     while netclass == 'C' and netmask < 24:
         netaddress = createRandInternetProtocolAddress()
         netmask = randNetMask()
+        netclass = netclass_a_b_c(netaddress)
 
 def main():
 
     netaddress = createRandInternetProtocolAddress()
     netmask = randNetMask()
     netclass = netclass_a_b_c(netaddress)
+    netrules(netclass, netmask)
+
+    
     
 
 
