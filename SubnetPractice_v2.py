@@ -152,9 +152,10 @@ def main():
                 print('\t\t\t\t\t\t\tInvalid option input')
 
         if option == options[0]:
-            print(f'\n\t\t\t\t\t\tip address : {netaddress} /{prefix}\n')
 
-            userquestion_1 = input(f'\t\t\t\t\t\tWhat is the subnet mask to /{prefix} :').strip()
+            print(f'\n\t\t\t\t\t\tip address : {netaddress} /{prefix}\n')
+            userquestion_1 = input(f'\n\t\t\t\t\t\tWhat is the subnet mask to /{prefix} :').strip().upper()
+
             if userquestion_1 == str(netmask):
                 tracker = 1
                 print(f'\t\t\t\t\t\tCorrect ! Subnet mask :{netmask} prefix : /{prefix}')
