@@ -101,16 +101,19 @@ def netrules():
 # ...https://github.com/tehmaze/ipcalc
 
 def ipcalcFunc(ip, prefix):
-    import ipcalc
-    ipcalcList = []
-    net = str(f'{ip}/{prefix}')
-    net = ipcalc.Network(net)
-    ipcalcList.append(net.broadcast())
-    ipcalcList.append(net.host_first())
-    ipcalcList.append(net.host_last())
-    ipcalcList.append(net.size())
-    ipcalcList.append(net.network())
-    return ipcalcList
+    try:
+        import ipcalc
+        ipcalcList = []
+        net = str(f'{ip}/{prefix}')
+        net = ipcalc.Network(net)
+        ipcalcList.append(net.broadcast())
+        ipcalcList.append(net.host_first())
+        ipcalcList.append(net.host_last())
+        ipcalcList.append(net.size())
+        ipcalcList.append(net.network())
+        return ipcalcList
+    except ImportError:
+        print('Cannot locate ipcalc module. Ensure you have PIP installed.')
 
 def numberOfSubnets(prefix, classId):
     p = int(prefix)
@@ -213,12 +216,13 @@ def main():
 
             if tracker < 4:
                 print(f'\t\t\t\t\t\tYou answered {tracker} out of 8 questions. More practice needed.')
-            elif tracker > 4:
-                print(f'\t\t\t\t\t\tWell done. You answered {tracker} out of 8 questions. Practice makes perfect.')
-            elif tracker > 6:
-                print(f'\t\t\t\t\t\tAwesome. You answered {tracker} out of 8 questions.')
+            elif tracker <= 7:
+                print(f'\t\t\t\t\t\tAwesome. You answered {tracker} out of 8 questions. Nearly there to becoming a subnet master!')
             elif tracker == 8:
-                print(f'\t\t\t\t\t\tNailed it. You are a subnetting master. You answered {tracker} out of 8.')    
+                if netclass == 'C':
+                    print(f'\t\t\t\t\t\tNailed it. But is was a class {netclass} network!\n\t\t\t\t\t\tLets test how you do you with a class A or B. You answered {tracker} out of 8.')    
+                else:
+                    (f'\t\t\t\t\t\tSubnetting master. You answered {tracker} out of 8. Well done!')
             time.sleep(6)
 
         elif option == options[1]:
