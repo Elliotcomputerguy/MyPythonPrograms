@@ -1,4 +1,3 @@
-
 def gen_key(server,username,privatekey):
     import os, pathlib, platform
 
@@ -8,6 +7,8 @@ def gen_key(server,username,privatekey):
     
     if platform.system() == 'Windows':
         print('Detected Windows operating system....')
+        os.system('Add-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0')
+        os.system('move C:\Windows\System32\OpenSSH\*.exe c:\Windows\System32')
     elif platform.system() == 'Linux':
         print('Detected Linux operating system....')
 
