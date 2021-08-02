@@ -1,22 +1,26 @@
 
 def gen_key(server):
-    import os, getpass
+    import os, pathlib, platform
+
     serverName = server
     cmdpass = f'ssh-keygen -f id_rsa.{serverName}'
     os.system(cmdpass)
 
-    if os.name == 'nt':
+    if platform.system() == 'Windows':
         print('Detected Windows operating system....')
-        print('Make directory \.ssh')
-        os.system('mkdir C:\Users\username\.ssh')
-        username = getpass.getuser()
-        os.system(f' id_rsa.{serverName} C:\Users\{username}\.ssh\id_rsa.{serverName}.pub')
-        os.system(f' id_rsa.{serverName} C:\Users\{username}\.ssh\id_rsa.{serverName}')
-        print('Your public key file and private key file has been copied to c:\users\{username}\.ssh')
-        print('Copy your public key to your server to authenticate against using your private key')
-    elif os.name == '':
-        pass
-   # os.system(f'{cmdpass} >> ~/.ssh/authorized_keys')
+    elif platform.system() == 'Linux':
+        print('Detected Linux operating system....')
+
+    print('Creating directory \.ssh')
+
+    absPath = pathlib.Path.home() / '.ssh' / 'authorized_keys'
+    absPath.mkdir(exist_ok=True)
+
+    os.system(f' move id_rsa.{serverName} {absPath}')
+    os.system(f' move id_rsa.{serverName}.pub {absPath}')
+
+    print(f'Your public key file and private key file has been copied to {absPath}')
+    print('Copy your public key to your server to authenticate against using your private key')
 
 def main():
     print(''' 
