@@ -1,6 +1,15 @@
 
+def get_admin():
+    import os, ctypes
+    try:
+        is_admin = os.getuid() == 0
+    except AttributeError:
+        is_admin = ctypes.windll.shell32.IsUserAnAdmin() != 0
+        return is_admin
+
+
 def gen_key(server,username,privatekey):
-    import os, pathlib, platform
+    import os, pathlib, platform, time, sys
 
     serverName = server
     userName = username
@@ -8,6 +17,15 @@ def gen_key(server,username,privatekey):
     
     if platform.system() == 'Windows':
         print('Detected Windows operating system....')
+        isadmin = get_admin()
+        if isadmin == 'False':
+            print('This needs to be ran as Administrator...')
+            time.sleep(5)
+            sys.exit()
+        else:
+            os.system('Add-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0')
+            os.system('move C:\Windows\System32\OpenSSH\*.exe c:\Windows\System32')
+            
     elif platform.system() == 'Linux':
         print('Detected Linux operating system....')
 
