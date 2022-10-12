@@ -1,5 +1,8 @@
-from scapy.all import *
+#pip3 install scapy-python3
+
+from scapy.all import sniff, load_contrib, sendp, DTP, DTPStatus
 import time
+
 load_contrib('dtp')
 #Catpure DTP Frame
 pkt = sniff(filter='other dst 01:00:0c:cc:cc:cc', count=1)
